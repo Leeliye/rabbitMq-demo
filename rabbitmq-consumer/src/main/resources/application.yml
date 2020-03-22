@@ -1,0 +1,17 @@
+server:
+  port: 10087
+spring:
+  application:
+    name: mq-rabbitmq-comsumer
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true             #开启重试机制
+          max-attempts: 5           #最大重试次数（重试5次还不行则会把消息删掉，默认是不限次数的，次数建议控制在10次以内）
+          initial-interval: 3000    #重试间隔时间
+        acknowledge-mode: manual
